@@ -1,0 +1,141 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.container {
+    
+display: grid;
+grid-template-rows: auto 1fr;
+height: 100vh;    
+    
+} 
+
+header {
+
+
+    grid-row: 1/2;
+    
+    color: whitesmoke;
+    background-color: rgb(38, 38, 41);
+    border-bottom: 5px solid rgb(160, 101, 46);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+}
+
+
+nav {
+    display: flex;
+    gap: 1rem;
+}
+
+nav button {
+    font-weight: bold;
+    background-color: rgb(245, 245, 245);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+}
+
+nav button:hover {
+    transform: scale(1.1);
+    color: whitesmoke;
+    background-color: rgb(184, 112, 45);
+}
+
+nav button:active {
+    transform: scale(0.98);
+}
+
+main {
+    padding: 2rem 2rem;
+    background-color: rgb(190, 186, 146);
+    grid-row: 2/3;
+    
+    
+}
+
+.books {
+    
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    color: rgb(53, 53, 53);
+    
+    background-color: rgba(237, 237, 238, 0.555);
+    padding: 1rem;
+    
+    display: flex;
+    flex-direction: column;
+   
+    border-radius: 1rem;
+    box-shadow: 1px 1px 5px 1px rgba(17, 17, 17, 0.795);
+    border: 5px solid rgba(216, 159, 73, 0.452);
+    transition: 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+.card img {
+    object-fit:fill;
+    width: 100%;
+    height: 18.75rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+.card h2 {
+    font-size: 1.3rem;
+}
+
+.buttons {
+    
+    align-self: flex-end;
+    display: flex;
+    gap: 1rem;
+     
+}
+
+
+.card-btn {
+    
+    border: none;
+    
+    cursor: pointer;
+}
+
+#card-btn-left {
+    color: whitesmoke;
+    padding: 0.1rem 0.5rem;
+    border-radius: 1rem;
+    background-color: rgba(58, 141, 48, 0.842);
+}
+
+
+#card-btn-right {
+    background:none;
+}
+#card-btn-right svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+
+#card-btn-right svg:hover {
+    fill:brown;
+}

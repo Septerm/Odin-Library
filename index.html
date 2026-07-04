@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Odin Library</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Odin Library</h1>
+
+            <nav>
+                <button>Read</button>
+                <button>Not Read</button>
+                <button>Add Book</button>
+            </nav>
+        </header>
+        <main>
+
+            <div class="books">
+    
+                <template id="card-template">
+                    <article class="card">
+                        <img src="" alt="book cover">
+                        <h2 class="title"></h2>
+                        <p class="author"></p>
+                        <p class="genre"></p>
+                        <div class="buttons">
+                            <button id="card-btn-left" class="card-btn"></button>
+                            <button id="card-btn-right" class="card-btn">
+                                <svg>
+                                    <use href="./icons/delete-outline.svg"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        
+
+                    </article>                    
+                </template>
+
+            </div>
+
+            
+
+
+        </main>        
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
