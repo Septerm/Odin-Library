@@ -21,6 +21,33 @@ function Book(title, author, genre, readStatus, bookCover) {
     this.genre = genre;
     this.readStatus = readStatus;
     this.bookCover = bookCover;
+    this.id = crypto.randomUUID();
+}
+
+function removeBook (bookId) {
+
+    const index = myLibrary.findIndex(book => book.id === bookId);
+    myLibrary.splice(index, 1);
+    displayBooks();
+}
+
+
+function changeStatus (bookId) {
+
+    const index = myLibrary.findIndex(book => book.id === bookId);
+    switch(myLibrary[index].readStatus) {
+        case "Reading":
+            myLibrary[index].readStatus = 'Unread';
+            break;
+        case "Unread":
+            myLibrary[index].readStatus = "Finish";
+            break;
+        case "Finish":
+            myLibrary[index].readStatus = "Reading";
+            break;
+    }
+
+    displayBooks();
 }
 
 
@@ -52,7 +79,24 @@ function displayBooks() {
         cardClone.querySelector('.title').textContent = book.title;
         cardClone.querySelector('.author').textContent = book.author;
         cardClone.querySelector('.genre').textContent = book.genre;
-        cardClone.querySelector('#card-btn-left').textContent = book.readStatus;
+
+        statusBtn = cardClone.querySelector('#card-btn-left');
+        removeBtn = cardClone.querySelector('#card-btn-right');
+
+        statusBtn.textContent = book.readStatus;
+
+        statusBtn.addEventListener('click', () => {
+            changeStatus(book.id)
+        })
+
+        removeBtn.addEventListener( 'click', () => {
+
+            removeBook(book.id);
+        
+        } );
+
+
+
         cardClone.querySelector('img').src = book.bookCover;
 
         console.log(book)
