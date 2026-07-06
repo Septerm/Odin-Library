@@ -1,50 +1,58 @@
 const books = document.querySelector('.books');
 const template = document.querySelector('#card-template');
-
+const formDialog = document.getElementById('my-dialog');
+const formTitle = formDialog.querySelector('#title');
+const formAuthor = formDialog.querySelector('#author');
+const formGenre = formDialog.querySelector('#genre');
+const formBookProgress = formDialog.querySelector('input[name="book-progress"]:checked');
+const formBookCover = formDialog.querySelector('#book-cover');
+const form = formDialog.querySelector('form');
 
 
 
 
 const myLibrary = [];
 
-function Book(title, author, genre, isRead, bookCover) {
+function Book(title, author, genre, readStatus, bookCover) {
 
 
     this.title = title;
     this.author = author;
     this.genre = genre;
-    this.isRead = isRead;
+    this.readStatus = readStatus;
     this.bookCover = bookCover;
 }
 
 
-function addBookToLibrary(title, author, genre, isRead, bookCover) {
+function addBookToLibrary(title, author, genre, readStatus, bookCover) {
 
 
-    let newBook = new Book(title, author, genre, isRead, bookCover);
+    let newBook = new Book(title, author, genre, readStatus, bookCover);
     myLibrary.push(newBook);
 }
 
 
 
-addBookToLibrary('Dune', 'Frank Herbert','Science Fiction',true, 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg' );
-addBookToLibrary('To Kill A Mockingbird', 'Harper Lee','Fiction',true, 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1553383690i/2657.jpg' );
-addBookToLibrary('American Gods', 'Neil Gaiman','Science Fiction',true, 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1462924585i/30165203.jpg' );
-addBookToLibrary('The Catcher in the Rye', 'J. D. Salinger','Fiction', true, 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1398034300i/5107.jpg' );
-addBookToLibrary('Backfire', 'Neville Giuseppi','Fiction',true, 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1189612083i/1875986.jpg' );
+addBookToLibrary('Dune', 'Frank Herbert','Science Fiction','Reading', 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg' );
+addBookToLibrary('To Kill A Mockingbird', 'Harper Lee','Fiction','Unread', 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1553383690i/2657.jpg' );
+addBookToLibrary('American Gods', 'Neil Gaiman','Science Fiction','Finish', 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1462924585i/30165203.jpg' );
+addBookToLibrary('The Catcher in the Rye', 'J. D. Salinger','Fiction','Reading', 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1398034300i/5107.jpg' );
+addBookToLibrary('Backfire', 'Neville Giuseppi','Fiction','Reading', 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1189612083i/1875986.jpg' );
 
 
 
 
 
 function displayBooks() {
+
+    books.innerHTML = '';
     for (let book of myLibrary) {
 
         const cardClone = template.content.cloneNode(true);
         cardClone.querySelector('.title').textContent = book.title;
         cardClone.querySelector('.author').textContent = book.author;
         cardClone.querySelector('.genre').textContent = book.genre;
-        cardClone.querySelector('#card-btn-left').textContent = 'Read';
+        cardClone.querySelector('#card-btn-left').textContent = book.readStatus;
         cardClone.querySelector('img').src = book.bookCover;
 
         console.log(book)
@@ -52,6 +60,15 @@ function displayBooks() {
 
     }
 }
+
+
+form.addEventListener("submit", (event) => {
+
+    event.preventDefault();
+    addBookToLibrary(formTitle.value, formAuthor.value, formGenre.value, formBookProgress.value, formBookCover.value);
+    displayBooks();
+    formDialog.close();
+})
 
 
 

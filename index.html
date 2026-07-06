@@ -13,34 +13,99 @@
 
             <nav>
                 <button>Read</button>
-                <button>Not Read</button>
-                <button>Add Book</button>
+                <button>Unread</button>
+                <button>Finish</button>
+                <button command="show-modal" commandfor="my-dialog">Add Book</button>
             </nav>
         </header>
         <main>
 
+            <dialog id="my-dialog">
+                <button commandfor="my-dialog" command="close">Close</button>
+                <form method="dialog" >
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" required>
+
+                    <label for="genre">Genre:</label>
+                    <select name="genre" id="genre">
+                        <option value="Romance">Romance</option>
+                        <option value="Science Fiction">Science Fiction</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Mystery & Crime">Mystery & Crime</option>
+                        <option value="Thriller & Suspense">Thriller & Suspense</option>
+                        <option value="Historical Fiction">Historical Fiction</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Biography">Biography</option>
+                        <option value="History">History</option>
+                        <option value="Self Help & Personal Development">Self Help & Personal Development</option>
+                        <option value="True Crime">True Crime</option>
+                        <option value="Literary Fiction">Literary Fiction</option>
+                    </select>
+
+                    <fieldset>
+
+                        <legend>Book Progress</legend>
+
+                        <ul>
+                            <li>
+                                <label for="reading">
+                                    <input type="radio" id="reading" name="book-progress" value="Reading" checked>
+                                    Reading
+                                </label>
+                            </li>
+
+                            <li>
+                                <label for="unread">
+                                    <input type="radio" id="unread" name="book-progress" value="Unread">
+                                    Unread
+                                </label>
+                            </li>
+
+                            <li>
+                                <label for="finish">
+                                    <input type="radio" id="finish" name="book-progress" value="Finish">
+                                    Finish
+                                </label>
+                            </li>
+                        </ul>
+
+                    </fieldset>
+
+                    <label for="book-cover">Book Cover Url:</label>
+                    <input type="url" name="book-cover" id="book-cover">
+
+                    <input type="submit" id="confirm-btn" value="Add Book">
+
+                </form>
+            </dialog>
+
             <div class="books">
     
-                <template id="card-template">
-                    <article class="card">
-                        <img src="" alt="book cover">
-                        <h2 class="title"></h2>
-                        <p class="author"></p>
-                        <p class="genre"></p>
-                        <div class="buttons">
-                            <button id="card-btn-left" class="card-btn"></button>
-                            <button id="card-btn-right" class="card-btn">
-                                <svg>
-                                    <use href="./icons/delete-outline.svg"></use>
-                                </svg>
-                            </button>
-                        </div>
-                        
 
-                    </article>                    
-                </template>
 
             </div>
+
+            <template id="card-template">
+                <article class="card">
+                    <img src="" alt="book cover">
+                    <h2 class="title"></h2>
+                    <p class="author"></p>
+                    <p class="genre"></p>
+                    <div class="buttons">
+                        <button id="card-btn-left" class="card-btn"></button>
+                        <button id="card-btn-right" class="card-btn">
+                            <svg>
+                                <use href="./icons/delete-outline.svg"></use>
+                            </svg>
+                        </button>
+                    </div>
+                        
+
+                </article>                    
+            </template>            
 
             
 

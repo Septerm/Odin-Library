@@ -56,6 +56,16 @@ nav button:active {
     transform: scale(0.98);
 }
 
+
+#my-dialog {
+    padding: 2rem;
+    margin: auto;
+}
+
+#my-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.24);
+}
+
 main {
     padding: 2rem 2rem;
     background-color: rgb(190, 186, 146);
