@@ -1,16 +1,37 @@
+@font-face {
+    font-family: 'robotoregular';
+    src: url('./fonts/roboto-variablefont_wdthwght-webfont.woff2') format('woff2'),
+         url('./fonts/roboto-variablefont_wdthwght-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'robotoregular',Arial, Helvetica, sans-serif;
 }
 
+:root {
+    --primary-color: rgb(185, 182, 151);
+    --secondary-color: rgb(38, 38, 41);
+    --tertiary-color: rgb(168, 112, 59);
+    --accent-color: rgba(216, 159, 73, 0.452);
+    --card-color: rgba(237, 237, 238, 0.555);
+    --white-color: whitesmoke;
+    --text-color: rgb(53, 53, 53);
 
+    --remove-btn-color: brown;
+    --reading-btn-color: rgba(58, 141, 48, 0.842);
+
+}
 
 .container {
     
 display: grid;
-grid-template-rows: auto 1fr;
+grid-template-rows: auto 1fr auto;
 height: 100vh;    
     
 } 
@@ -20,13 +41,17 @@ header {
 
     grid-row: 1/2;
     
-    color: whitesmoke;
-    background-color: rgb(38, 38, 41);
-    border-bottom: 5px solid rgb(160, 101, 46);
+    color: var(--white-color);
+    background-color: var(--secondary-color);
+    border-bottom: 5px solid var(--tertiary-color);
     padding: 2rem;
     display: flex;
     justify-content: space-between;
     align-content: center;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 8px 6px -9px rgba(0, 0, 0, 0.89);
+   
 
 }
 
@@ -38,7 +63,7 @@ nav {
 
 nav button {
     font-weight: bold;
-    background-color: rgb(245, 245, 245);
+    background-color: var(--white-color);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 1rem;
@@ -48,8 +73,8 @@ nav button {
 
 nav button:hover {
     transform: scale(1.1);
-    color: whitesmoke;
-    background-color: rgb(184, 112, 45);
+    color: var(--white-color);
+    background-color: var(--tertiary-color);
 }
 
 nav button:active {
@@ -58,17 +83,109 @@ nav button:active {
 
 
 #my-dialog {
-    padding: 2rem;
+
+    width: 500px;
+    padding: 3rem 3rem;
     margin: auto;
+    border-width: 0.5rem;
+    border-radius: 1rem;
+    background-color: rgb(255, 250, 239);
+    color: var(--text-color);
+    border-color: var(--tertiary-color);
 }
 
 #my-dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.24);
+    background-color: rgba(0, 0, 0, 0.623);
+}
+
+#my-dialog h2 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+p label , legend {
+    font-size: 0.9rem;
+    display: block;
+    font-weight: bold;
+    
+}
+
+p input, input[type='submit'], button[command="close"], select {
+    width: 100%;
+}
+
+form li {
+    list-style: none;
+}
+
+fieldset {
+    border: none;
+
+}
+
+legend {
+    margin-bottom: 0.5rem;
+}
+
+form p, form fieldset {
+    margin-bottom: 1rem;
+}
+
+form p input, form p select, form input[type="submit"], dialog button {
+    border: solid 2px var(--tertiary-color);
+    
+}
+
+form p input, form p select{
+    padding: 0.2rem;
+    background:none;
+    
+}
+
+form input[type="submit"], dialog button {
+    cursor: pointer;
+    color: var(--tertiary-color);
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    background: none;
+    border: solid 2px var(--tertiary-color);
+}
+
+form input[type="submit"]:hover, dialog button:hover {
+    color: rgb(255, 250, 239);
+    background-color: var(--tertiary-color);
+}
+
+select, ::picker(select){
+    appearance: base-select;
+    border-radius: 0;
+    
+}
+
+
+option {
+    padding: 0.5rem 0.5rem;
+}
+option::checkmark {
+    content: none ;
+}
+
+ option:hover{
+    color: var(--white-color);
+    background-color: var(--tertiary-color)
+}
+
+form input[type="submit"] {
+    margin-bottom: 0.5rem;
+}
+
+input[type="radio"] {
+    accent-color: brown;
 }
 
 main {
     padding: 2rem 2rem;
-    background-color: rgb(190, 186, 146);
+    background-color: var(--primary-color);
     grid-row: 2/3;
     
     
@@ -83,9 +200,9 @@ main {
 }
 
 .card {
-    color: rgb(53, 53, 53);
+    color: var(--text-color);
     
-    background-color: rgba(237, 237, 238, 0.555);
+    background-color: var(--card-color);
     padding: 1rem;
     
     display: flex;
@@ -93,7 +210,7 @@ main {
    
     border-radius: 1rem;
     box-shadow: 1px 1px 5px 1px rgba(17, 17, 17, 0.795);
-    border: 5px solid rgba(216, 159, 73, 0.452);
+    border: 5px solid var(--accent-color);
     transition: 0.3s ease-in-out;
 }
 
@@ -130,11 +247,13 @@ main {
 }
 
 #card-btn-left {
-    color: whitesmoke;
+    color: var(--white-color);
     padding: 0.1rem 0.5rem;
     border-radius: 1rem;
-    background-color: rgba(58, 141, 48, 0.842);
+    background-color: var(--reading-btn-color);
 }
+
+
 
 
 #card-btn-right {
@@ -147,5 +266,25 @@ main {
 
 
 #card-btn-right svg:hover {
-    fill:brown;
+    fill:var(--remove-btn-color);
+}
+
+
+footer svg {
+    
+    width: 3rem;
+    height: 3rem;
+    fill: var(--white-color);
+}
+
+footer {
+
+    grid-row: 3/4;
+    border-top: 5px solid var(--tertiary-color);
+    padding: 1rem 2rem;
+    background-color: var(--secondary-color);
+    text-align: center;
+}
+footer p {
+    color: var(--white-color);
 }
