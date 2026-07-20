@@ -13,34 +13,40 @@ const form = formDialog.querySelector('form');
 
 const myLibrary = [];
 
-function Book(title, author, genre, readStatus, bookCover) {
 
 
-    this.title = title;
-    this.author = author;
-    this.genre = genre;
-    this.readStatus = readStatus;
-    this.bookCover = bookCover;
-    this.id = crypto.randomUUID();
-}
-
-
-Book.prototype.updateStatus = function() {
+class Book {
     
-    switch(this.readStatus) {
-        case "Reading":
-            this.readStatus = "Finish";
-            break;
-        case "Finish":
-            this.readStatus = "Unread";
-            break;
-        case "Unread":
-            this.readStatus = "Reading";
-            break;
+    constructor(title, author, genre, readStatus, bookCover) {
+
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.readStatus = readStatus;
+        this.bookCover = bookCover;
+        this.id = crypto.randomUUID();
     }
 
-    displayBooks();
+    updateStatus() {
+
+        switch(this.readStatus) {
+
+            case "Reading":
+                this.readStatus = "Finish";
+                break;
+            case "Finish":
+                this.readStatus = "Unread";
+                break;
+            case "Unread":
+                this.readStatus = "Reading";
+                break;
+        }
+
+        displayBooks();
+    }
 }
+
+
 
 
 function addBookToLibrary(title, author, genre, readStatus, bookCover) {
